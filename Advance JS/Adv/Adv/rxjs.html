@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rxjs Sample</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.5.6/Rx.js" async></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.5.6/Rx.js.map"></script> -->
+    <!-- example1 -->
+    <!-- <script>
+        setTimeout(() => {
+
+            console.log('*'.repeat(10), 'Observable.of');
+            Rx.Observable.of(1, 2, 3)
+                .subscribe(value => {
+                    console.log(value);
+                });
+
+
+            console.log('*'.repeat(10), 'Observable.of for Object');
+            Rx.Observable.of({
+                    a: 1,
+                    b: 2,
+                    c: 3
+                }, 1, ['a', 'b'])
+                .subscribe(value => {
+                    console.log(value);
+                });
+
+            console.log('*'.repeat(10), 'Observable.from');
+            Rx.Observable.from([1, 2, 3])
+                .subscribe(value => {
+                    console.log(value);
+                });
+
+            console.log('*'.repeat(10), 'Observable.range');
+            Rx.Observable.range(1, 3)
+                .subscribe(value => {
+                    console.log(value);
+                });
+        }, 1000);
+    </script> -->
+
+    <!-- example 2 -->
+    <!-- <script>
+        setTimeout(() => {
+
+            console.log('*'.repeat(10), 'map operator');
+            Rx.Observable.of(1, 2, 3)
+                .map(value => value * 10)
+                .subscribe(value => {
+                    console.log(value);
+                });
+
+
+            console.log('*'.repeat(10), 'filter operator');
+            Rx.Observable.of(1, 2, 3)
+                .filter(value => value % 2 === 0)
+                .subscribe(value => {
+                    console.log(value);
+                });
+
+
+            console.log('*'.repeat(10), 'scan operator');
+            Rx.Observable.of(1, 2, 3)
+                .scan((p, value) => p + value)
+                .subscribe(value => {
+                    console.log(value);
+                });
+
+
+            console.log('*'.repeat(10), 'reduce operator');
+            Rx.Observable.of(1, 2, 3)
+                .reduce((p, value) => p + value)
+                .subscribe(value => {
+                    console.log(value);
+                });
+
+            console.log('*'.repeat(10), 'reduce operator from Array');
+            Rx.Observable.from([1, 2, 3])
+                .reduce((p, value) => p + value)
+                .subscribe(value => {
+                    console.log(value);
+                });
+
+        }, 1000)
+    </script> -->
+
+    <!-- example 3 -->
+    <!-- <script>
+        setTimeout(() => {
+            console.log('*'.repeat(10), 'delay operator instead of setTimeout');
+
+            console.log('   0ms');
+
+
+            setTimeout(() => {
+                console.log('1000ms');
+            }, 1000);
+
+
+            Rx.Observable.of('')
+                .delay(2000)
+                .subscribe(() => {
+                    console.log('2000ms');
+                });
+
+            console.log('*'.repeat(10), 'delay operator instead of setTimeout, showing aRRay after 3000ms');
+            Rx.Observable.from([1, 2, 4, 5, 6])
+                .delay(3000)
+                .subscribe((a) => {
+                    console.log('3000ms', a);
+                });
+
+
+        }, 1000)
+    </script> -->
+
+    <!-- example 4 -->
+    <!-- <script>
+        setTimeout(() => {
+            console.log('*'.repeat(10), 'setInterval');
+            let i = 0;
+            let prom =  new Promise(resolve => {
+                const timer = setInterval(() => {
+                    if (i < 3) {
+                        console.log(i);
+                    } else {
+                        clearInterval(timer);
+                        resolve();
+                    }
+                    i++;
+                }, 500);
+            });
+            prom.then(() => {
+                console.log('Promise Resloved....');
+            });
+
+
+            console.log('*'.repeat(10), 'timer, take operator');
+            Rx.Observable.timer(0, 500)
+                .take(3)
+                .subscribe(index => {
+                    console.log(index);
+                });
+
+        }, 1000);
+    </script> -->
+
+    <!-- example 5 -->
+    <!-- <script>
+        setTimeout(() => {
+
+            let prom1 = new Promise(resolve => {
+                setTimeout(() => {
+                    console.log(1);
+                    resolve();
+                }, 500);
+            });
+
+            let prom1 =new Promise(resolve => {
+                setTimeout(() => {
+                    console.log(2);
+                    resolve();
+                }, 500);
+            });
+
+            let obj1prom =  Rx.Observable.of(3)
+                .delay(500)
+                .do(value => console.log(value))
+                .toPromise();
+
+            let obj2prom = Rx.Observable.of(4)
+                .delay(500)
+                .do(value => console.log(value))
+                .toPromise();
+
+        }, 1000);
+    </script> -->
+
+    <!-- example 6 -->
+    <!-- <script>
+        setTimeout(() => {
+            console.log('*'.repeat(10), 'Subject');
+
+            const subject = new Rx.Subject();
+
+
+            subject
+                .subscribe(
+                    value => {
+                        console.log(value);
+                    },
+                    err => {},
+                    () => console.log('(subject complete)')
+                );
+
+
+            subject.next(1);
+            subject.next(2);
+            subject.next(3);
+
+            subject.complete();
+
+            subject.next(4);
+        }, 1000)
+    </script> -->
+
+    <!-- example 7 -->
+    <!-- <script>
+        setTimeout(() => {
+            console.log('*'.repeat(10), 'zip operator');
+
+            const subject1 = new Rx.Subject();
+            const subject2 = new Rx.Subject();
+
+            Rx.Observable
+                .zip(...[
+                    subject1,
+                    subject2
+                ])
+                .subscribe(values => {
+                    console.log(values);
+                }, err => {}, () => console.log('(zip complete)'));
+
+
+            subject1.next(1);
+            subject1.next(2);
+            subject2.next('first');
+
+            console.log('wait...........');
+
+            subject2.next('second');
+
+            subject1.complete();
+            subject2.complete();
+        }, 1000);
+    </script> -->
+
+    <!-- <script>
+    setTimeout(() => {
+        console.log('SUBSCRIBING....')
+        let subscription = Rx.Observable.fromEvent(document, 'click').subscribe(() => {
+            console.log('clicked.....')
+        })
+
+        setTimeout(() => {
+            console.log('UNSUBSCRIBE....')
+            subscription.unsubscribe();
+        }, 1000)
+    }, 1000);
+    </script> -->
+
+</head>
+
+<body>
+
+    <script>
+        // https://www.youtube.com/watch?v=2LCo926NFLI
+        // https://angularfirebase.com/lessons/rxjs-quickstart-with-20-examples/
+        setTimeout(() => {
+            const observable = Rx.Observable.create(observer => {
+                observer.next('Hello');
+                observer.next('World');
+            });
+            observable.subscribe(data => console.log('data ', data));
+
+
+
+            const clicks = Rx.Observable.fromEvent(document, 'click');
+            clicks.subscribe(click => console.log(click));
+
+
+            const promise = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve('resolved!')
+                }, 1000)
+            });
+            const obsvPromise = Rx.Observable.fromPromise(promise);
+            obsvPromise.subscribe(result => console.log(result));
+
+
+            const timer = Rx.Observable.timer(1000)
+            timer.subscribe(done => console.log('ding!!!'));
+
+
+            // const interval = Rx.Observable.interval(1000)
+            // interval.subscribe(Int32Array => console.log( new Date().getSeconds() ));
+
+            const mashup = Rx.Observable.of('anything', ['you', 'want'], 23, true, {cool: 'stuff'})
+            mashup.subscribe(val => console.log( val ));
+
+
+
+            // const timer = Rx.Observable.timer(1000);
+            // timer
+            // .finally(() => console.log('All done!'))
+            // .subscribe()
+
+
+        }, 100);
+    </script>
+</body>
+
+
+</html>

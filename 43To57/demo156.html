@@ -1,0 +1,55 @@
+<html>
+<head>
+
+</head>
+<body>
+    <!-- 
+     Chapter 49
+     Reading field values
+    -->
+    <form >
+        Email:
+        <input type="text" id="email">
+        <input type="text" id="pwd">
+        <input type="button" value="Submit" onClick="checkAddress();">
+    </form>
+    <p style="color: red; display: none;" id="error">
+        Password dosent matched!!
+    </p>
+    
+</body>
+<script>
+    var arr = [ ['u1', 'p1'], ['u2', 'p2'] ];
+    function checkAddress(){
+       var emailEle = document.getElementById('email');
+       var pwdEle = document.getElementById('pwd');
+
+       var email = emailEle.value
+       var password = pwdEle.value
+
+       var isAuthenticated = false;
+       for(var i = 0; i < arr.length; i++) {
+           var userItem = arr[i];   // ['u1', 'p1']
+           if(userItem[0] == email && userItem[1] == password) {
+                isAuthenticated = true;
+                break;  
+           } 
+       }
+       if(isAuthenticated) {
+           alert('Successs')
+       } else {
+        alert('Fail......')
+       }
+
+    }
+</script>
+
+
+
+
+
+
+
+
+
+</html>

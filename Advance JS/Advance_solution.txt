@@ -1,0 +1,93 @@
+
+// task 1 : Clouser
+var arr2 = [
+    1, 2, 3, 4, 5
+];
+
+for (var i = 0; i < arr2.length; i++) {
+    log(arr2[i]);
+}
+
+// function log(item) {
+//     setTimeout(() => {
+//         console.log(item);
+//     }, 1000);
+// }
+
+// arr2.forEach(function(ele) {
+//     setTimeout(() => {
+//         console.log(ele);
+//     }, 1000);
+// })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// task 2
+
+// task using callback show serialize
+var arr = [
+    { id: 1, timer: 1000 },
+    { id: 2, timer: 2000 },
+    { id: 3, timer: 500 },
+    { id: 4, timer: 800 },
+];
+
+
+// solution 2
+function callFunc(arr) {
+    let item = arr.pop();
+    if (item) {
+        setTimeout(() => {
+            console.log(item.id);
+            callFunc(arr);
+        }, item.timer);
+    }
+}
+callFunc(arr);

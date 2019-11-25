@@ -1,0 +1,66 @@
+<html>
+<head>
+   <style>
+        .newDiv {
+            background-color: slategrey
+        }
+
+        .updatedDiv {
+            background-color: rosybrown
+        }
+   </style>
+</head>
+<body>
+    <!-- 
+     Chapter 68
+    The DOM: Inserting nodes
+    -->
+    
+    <div>
+        <input type="text" id="paraName"> <br>
+        <input type="button" value="Add Element" onclick="addElement()"/>
+        <input type="button" value="Remove Element" onclick="removeElement()"/>
+
+    </div>
+    <br/>
+    <br/>
+    <div id="mydata">
+        <p id="p1">First   <input type="button" value="Remove Element" onclick="removeElement2('p1')"/></p>
+        <p id="p2">Second <input type="button" value="Remove Element" onclick="removeElement2('p2')"/></p>
+        <p id="p3">Thrid <input type="button" value="Remove Element" onclick="removeElement2('p3')"/></p>
+        <p id="p4">Forth <input type="button" value="Remove Element" onclick="removeElement2('p4')"/></p>
+    </div>
+
+    
+   
+</body>
+<script>
+    
+
+    function addElement(){
+        var mainDiv = document.getElementById("mydata");
+        var textValue = document.getElementById("paraName").value;
+        var paraElement = document.getElementById(textValue);
+
+        var p = document.createElement("p");
+        var t = document.createTextNode("This is new Text in p");
+        p.appendChild(t);
+
+        mainDiv.insertBefore(p,paraElement);
+    }
+
+    function removeElement(){
+        var textValue = document.getElementById("paraName").value;
+        var paraElement = document.getElementById(textValue);
+        paraElement.remove();
+        //mainDiv.removeChild(p2);
+    }
+    
+    function removeElement2(id) {
+        var ele = document.getElementById(id);
+        ele.remove();
+    }
+
+
+</script>
+</html>

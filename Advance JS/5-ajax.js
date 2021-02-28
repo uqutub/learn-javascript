@@ -36,3 +36,28 @@ getMyGithubProfile(function(data) {
 
 
 
+fetchApi('https://api.github.com/users/uqutub')
+.then(data => { 
+	console.log('My Name ', data.name);
+	return fetchApi('https://api.github.com/users/'+data.id)
+	
+})
+.then(data)
+.catch(err => console.log('Err ', err))
+
+
+
+var posts = ['post1', 'post2']
+
+posts.map(item => fetchApi('http://getpost/'+item))
+
+
+function fetchApi(url) {
+
+    return new Promise((res, rej) => {
+        fetch(url, true).then(res => res.json())
+        .then(data => res(data))
+        .catch(err => rej(err))
+    })
+
+}

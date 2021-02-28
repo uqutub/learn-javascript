@@ -22,3 +22,35 @@ function getDisposalSalary(cb) {
 getDisposalSalary(function(data) {
     console.log(data);
 });
+
+
+
+
+
+
+function login(user, pwd, success, error) {
+    console.log('Loading.... Loader, waiting....')
+     setTimeout(function () {       // network call / API
+        // if (user == admin && pwd== adin)
+        if(user == 'admin' && pwd == 'admin') {
+            success();    // callback
+        } else {
+            error();        // callback
+        } 
+     }, 3000);
+};
+function errorHandling(err) {
+    console.log('pls ttry again...');
+}
+function gotoDashboard() {
+    console.log('Welcome to Dahsboad/Homepage');
+}
+
+
+function letsLogin(u, p) {
+
+    login(u, p, gotoDashboard, errorHandling);
+}
+
+
+letsLogin('admin', 'p')
